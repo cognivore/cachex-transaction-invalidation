@@ -11,15 +11,15 @@ Logger.info "We will spam twice and then comply with the 3 second rule."
 Logger.info "This trigger two spam detection events, as after the second `increment`, the duration of cache validity is 3_250 ms."
 Logger.info "Final result of the counter should be 1, not 2."
 
-Logger.debug "1. #{CTI.get()}"
-CTI.increment()
-Logger.debug "2. #{CTI.get()}"
-CTI.increment()
-Logger.debug "3. #{CTI.get()}"
+Logger.debug("1. #{CTI.get()}")
+CTI.increment_prime()
+Logger.debug("2. #{CTI.get()}")
+CTI.increment_prime()
+Logger.debug("3. #{CTI.get()}")
 
 # Sleep for 3.01 seconds and then increment again
-Process.sleep(3_010)
-CTI.increment()
+Process.sleep(3_010) |> inspect() |> Logger.debug()
+CTI.increment_prime()
 y = CTI.get()
 Logger.debug("4. #{y}")
 IO.puts(y)
